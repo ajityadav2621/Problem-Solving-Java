@@ -2,28 +2,29 @@
 
 class Solution {
     public static ArrayList<ArrayList<Integer>> getPairs(int[] arr) {
-        // code here
         Arrays.sort(arr);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        
         int i = 0;
-        int j = arr.length-1;
-        while(i<j){
-            int sum = arr[i]+arr[j];
-            if(sum==0){
+        int j = arr.length - 1;
+        
+        while (i < j) {
+            int sum = arr[i] + arr[j];
+            if (sum == 0) {
                 ArrayList<Integer> pair = new ArrayList<>();
                 pair.add(arr[i]);
                 pair.add(arr[j]);
                 result.add(pair);
                 
-                int currentI = arr[i];
-                int currentJ = arr[j];
-                i++;
-                j--;
+                int leftVal = arr[i];
+                int rightVal = arr[j];
                 
-                while (i < j && arr[i] == currentI) {
+                // move i forward skipping duplicates
+                while (i < j && arr[i] == leftVal) {
                     i++;
                 }
-                while (i < j && arr[j] == currentJ) {
+                // move j backward skipping duplicates
+                while (i < j && arr[j] == rightVal) {
                     j--;
                 }
             } else if (sum < 0) {
@@ -34,5 +35,5 @@ class Solution {
         }
         
         return result;
-}
+    }
 }
